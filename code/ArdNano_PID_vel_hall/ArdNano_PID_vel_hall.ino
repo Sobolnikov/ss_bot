@@ -1,17 +1,22 @@
 //const int pwm = 2 ; //initializing pin 2 as pwm
 // Motor connections
-#define   IN_A   4
-#define   IN_B   5
-#define   EN_A   9
+#define   IN_A   5
+#define   IN_B   6
+#define   EN_A   10
 
-#define   BUTTON_A   7
-#define   BUTTON_B   8
+#define   IN_C   7
+#define   IN_D   8
+#define   EN_B   9
 
-#define   HALL_A   2
-#define   HALL_B   3
+#define   BUTTON_A   11
+#define   BUTTON_B   12
+
+#define   HALL_A   3
+#define   HALL_B   2
 //For providing logic to L298 IC to choose the direction of the DC motor
 
 volatile int count_a = 0;//if the interrupt will change this value, it must be volatile
+
 volatile int count_b = 0;//if the interrupt will change this value, it must be volatile
 
 int sw[] = {1, 1}; //switch up, switch down
@@ -93,13 +98,11 @@ void PID()
     lastPose = currentPos;
     
     
-if (velocity != 0)
-{
+    if (velocity != 0)  
+    {
       Serial.print(velocity);
       Serial.print(" ");
-}
-
-  
+    }
     /*Compute PID Output*/
     double u = kp * error + kierrSum + kd * dErr;
     go(u);
@@ -133,8 +136,8 @@ void go(int v)
 }
 
 void ReadInputs() {
-  sw[0] = digitalRead(BUTTON_A), sw[1] = digitalRead(BUTTON_B);//check switches
-  currentPos = count_a;//set where you are
+  sw[0] = digitalRead(BUTTON_A), sw[1] = digitalRead(BUTTON_B); //check switches
+  currentPos = count_a;     //set where you are
 }//end read inputs
 
 void loop() {

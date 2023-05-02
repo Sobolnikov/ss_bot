@@ -26,8 +26,8 @@
 #include <RemoteXY.h>
 
 // настройки соединения 
-#define REMOTEXY_SERIAL_RX 12
-#define REMOTEXY_SERIAL_TX 13
+#define REMOTEXY_SERIAL_RX 13
+#define REMOTEXY_SERIAL_TX 12
 #define REMOTEXY_SERIAL_SPEED 9600
 
 
