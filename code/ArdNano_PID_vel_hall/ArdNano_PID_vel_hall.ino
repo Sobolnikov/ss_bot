@@ -1,3 +1,8 @@
+#include <PinChangeInterrupt.h>
+#include <PinChangeInterruptPins.h>
+#include <PinChangeInterruptSettings.h>
+#include <PinChangeInterruptBoards.h>
+
 //const int pwm = 2 ; //initializing pin 2 as pwm
 // Motor connections
 #define   IN_A   5
@@ -57,6 +62,7 @@ void setup() {
   digitalWrite(HALL_B, HIGH);//enable internal pullup resistor
   attachInterrupt(digitalPinToInterrupt(HALL_B), angle_b, RISING);//Interrupt initialization
   
+  
   pinMode(HALL_A, INPUT);
   digitalWrite(HALL_A, HIGH);//enable internal pullup resistor
   attachInterrupt(digitalPinToInterrupt(HALL_A), angle_a, RISING);
@@ -72,7 +78,8 @@ void angle_a()
 
 void angle_b()
 {
- count_b = count_b+1;
+  if (forwards == true) count_b++; //if moving forwards, add counts
+  else if (backwards == true) count_b--; //if moving back, subtract counts
 }
 
 void PID()
