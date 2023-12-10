@@ -187,7 +187,7 @@ return pulseIn(PIN_SONAR_ECHO, HIGH)/ 58;
 //      
 //        //---exponential moving average--- 
 //        filVal += (dist - filVal) * filter_k;
-//        return constrain(filVal, 0, 35);;
+//        return constrain(filVal, 0, 35);
 }
 
 /* IMU GY_85 */
